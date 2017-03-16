@@ -4,7 +4,7 @@ const router = express.Router();
 
 const parser = require('body-parser');
 
-const blog = require('./blog')
+const blogs = require('./blog')
 
 router.use(parser.json());
 
@@ -17,7 +17,7 @@ router.get('/blog',(req,res,next)=>{
 router.post('/blog',(req,res,next)=>{
   const requestBody = request.body;
 
-  newBlog.createItem(requestBody)
+  NewBlog.createItem(requestBody)
     next();
 });
 
@@ -26,7 +26,7 @@ router.put('/blog:id',(req,res,next)=>{
 	const dataPayload = request.body;
 
 
-  newBlog.updateItem(id, 'data.isDone', dataPayload.isDone);
+  NewBlog.updateItem(id, 'data.isDone', dataPayload.isDone);
 
   next();
 
@@ -36,7 +36,7 @@ router.delete('/blog:id',(req,res,next)=>{
 
   const id = request.params.id;
 
-  	newBlog.deleteItem(id);
+  	NewBlog.deleteItem(id);
 
   	next();
 })
