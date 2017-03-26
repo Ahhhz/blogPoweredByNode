@@ -8,13 +8,14 @@ const blogs = require('./blog')
 
 router.use(parser.json());
 
-router.get('/blog',(req,res,next)=>{
+router.get('/blogs',(req,res,next)=>{
+  console.log('IN GET')
       next();
   });
 
 
 
-router.post('/blog',(req,res,next)=>{
+router.post('/blogs',(req,res,next)=>{
   const requestBody = request.body;
 
   NewBlog.createItem(requestBody)
@@ -34,7 +35,7 @@ router.put('/blog:id',(req,res,next)=>{
 
 router.delete('/blog:id',(req,res,next)=>{
 
-  const id = request.params.id;
+    const id = parseInt(request.params.id, 10);
 
   	NewBlog.deleteItem(id);
 
@@ -47,6 +48,6 @@ router.delete('/blog:id',(req,res,next)=>{
 
 router.use((request, response) => {
   response.header('Content-Type', 'application/json');
-  response.send(blog.getItems());
+  response.send(blogs.getItems());
 });
 module.exports = router;

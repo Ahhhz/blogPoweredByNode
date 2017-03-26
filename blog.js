@@ -3,18 +3,18 @@ const low = require('lowdb');
 const db = low('./db.json');
 
 
-db.defaults({ blog: [] }).write()
+db.defaults({ blogs: [] }).write()
 
 const NewBlog = {};
 
 NewBlog.getItems = () =>  {
-  return db.get('blog').value()
+  return db.get('blogs').value()
 }
 
 
 
 NewBlog.createItem = (itemToCreate) => {
-	db.get('blog').push({
+	db.get('blogs').push({
 		id: Date.now(),
 		data: itemToCreate,
 	}).write();
@@ -22,7 +22,7 @@ NewBlog.createItem = (itemToCreate) => {
 
 
 NewBlog.updateItem = (id, key, propertyToUpdate) => {
-	db.get('blog')
+	db.get('blogs')
 		  .find({ id })
 		  .set(key, propertyToUpdate)
 		  .write()
@@ -30,7 +30,7 @@ NewBlog.updateItem = (id, key, propertyToUpdate) => {
 
 
 NewBlog.deleteItem = (id) => {
-	db.get('blog')
+	db.get('blogs')
 		.remove({id})
 		.write();
 }
