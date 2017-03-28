@@ -52,72 +52,56 @@
     }
 
     function render(blogItems) {
-        const container = document.querySelector('.js-blogList');
-        container.innerHTML = '';
-  //       for(const blogItem of blogItems){
-  //           const div = document.createElement('div');
-  //           div.innerHTML = `
-  //  <h2 class="ui header text">${blogItem.data.title}</h2>
-  //  <div class="ui tall stacked segment">
-  //    <p class = "text post-body">${blogItem.data.blog}</p>
-  //    </div>
-  //       	`;
-   //
-  //           if (Posts.data.isDone) {
-  //               div.innerHTML += `<span class="glyphicon glyphicon-check todolist-icon js-todo-check"></span>`
-  //           } else {
-  //               div.innerHTML += `<span class="glyphicon glyphicon-unchecked todolist-icon js-todo-check"></span>`
-  //           }
-   //
-   //
-  //           div.classList.add('jumbotron', 'js-blogList');
-   //
-  //           container.appendChild(div);
-   //
-  //           li.querySelector('.js-todo-check').addEventListener('click', (e) => {
-  //               console.log(blogItem);
-  //               let isDone;
-  //               if (blogItem.data.isDone) {
-  //                   isDone = false;
-  //               } else {
-  //                   isDone = true;
-  //               }
-   //
-  //               PUT('/api/post/' + blogItem.id, {
-  //                       isDone
-  //                   })
-  //                   .then((data) => {
-  //                       render(data);
-  //                   })
-  //                   .catch((e) => {
-  //                       alert(e)
-  //                   })
-  //           })
-   //
-  //       }
-   //
-  //       if (blogItem.length === 0) {
-  //           container.innerHTML = `
-  //           <div class="ui loading form"></div>`;
-  //       }
-  //   } // render
+        const container = document.querySelector('.js-AllPost');
+        container.innerHTML = `<div class="jumbotron"><h2 class="ui header text"></h2>
+        <div class="ui tall stacked segment">
+        <p class="text post-body">
+        <div class="ui segment">
+<div class="ui active inverted dimmer">
+  <div class="ui large text loader">Loading</div>
+</div>
+<p></p>
+<p></p>
+<p></p>
+</div>
+        </p>
+        </div>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p></div>`
+
+        for (const blogItem of blogItems) {
+          console.log(blogItem)
+          const div = document.createElement('div')
+          div.innerHTML = `<h2 class="ui header text">${blogItem.data.title}</h2>
+          <div class="ui tall stacked segment">
+          <p class="text post-body">
+            ${blogItem.data.blog}
+          </p>
+          </div>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p>
+          `;
+          div.classList.add('jumbotron')
+
+          container.appendChild(div)
+        }
+    } // render
 
 
-    GET('/api/post')
-        .then((blogItems) => {
-            render(blogItems);
-        });
 
-    // document.querySelector('.js-add-todo').addEventListener('click', (e) => {
-    //     const input = document.querySelector('.js-todo-text');
-    //     input.setAttribute('disabled', 'disabled');
+    const createBtn = document.querySelector('.js-create')
+    createBtn.addEventListener('click',(e) => {
+      console.log(e)
+      $('.ui.fullscreen.modal')
+      .modal('toggle')
+      ;
+    })
+    // createBtn.addEventListener('click', (e) => {
     //     POST('/api/post', {
     //         post: input.value,
     //         when: new Date().getTime() + 9 * 60 * 60 * 1000
     //     }).then((data) => {
     //         input.removeAttribute('disabled');
     //         input.value = '';
-    //         render(data);
+            // render(data);
     //     });
     // })
 
@@ -125,36 +109,25 @@
 
 
 
-    // function render (blogPosts) {
-    //   const container = document.querySelector('.js-blog');
-    //   // container.innerHTML = '';
-    //   for (const blogPost of blogPosts) {
-    //     const div = document.createElement('div');
-    //     div.innerHTML = `
-    //     ${blogPost.data.blog}
-    //     `;
+    //               PUT('/api/post/' + blogItem.id, {
+    //                       isDone
+    //                   })
+    //                   .then((data) => {
+    //                       render(data);
+    //                   })
+    //                   .catch((e) => {
+    //                       alert(e)
+    //                   })
+    //           })
     //
-    //
-    //   }
-    //   innerHTML = `
-    //   //
-    //   //
-    //   // `
-    //
-    // }
+    //       }
 
-    render()
 
-    GET('api/blogs')
-      .then((Post)=>{
-        render(Post)
-        console.log('IN GET')
-      });
+    GET('api/post')
+        .then((blogItems) => {
+            render(blogItems)
+            // console.log(blogItems)
+            // console.log('IN GET')
+        });
 
-const create = document.querySelector('.js-create')
-  create.addEventListener('click',(e)=>{
-    $('.ui.basic.modal')
-  .modal('show')
-;
-  })
 })();

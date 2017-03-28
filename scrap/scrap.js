@@ -111,7 +111,7 @@
 
 
 
-  // 
+  //
   // const low = require('lowdb');
   //
   // const db = low('./db.json');
@@ -150,3 +150,35 @@
   // }
   //
   // module.exports = NewBlog;
+
+
+
+
+
+  //           const div = document.createElement('div');
+  //           div.innerHTML = `
+  //  <h2 class="ui header text">${blogItem.data.title}</h2>
+  //  <div class="ui tall stacked segment">
+  //    <p class = "text post-body">${blogItem.data.blog}</p>
+  //    </div>
+  //       	`;
+   //
+  //           // if (Posts.data.isDone) {
+  //           //     div.innerHTML += `<span class="glyphicon glyphicon-check todolist-icon js-todo-check"></span>`
+  //           // } else {
+  //           //     div.innerHTML += `<span class="glyphicon glyphicon-unchecked todolist-icon js-todo-check"></span>`
+  //           // }
+   //
+   //
+  //           div.classList.add('jumbotron', 'js-blogList');
+   //
+  //           container.appendChild(div);
+   //
+  //           li.querySelector('.js-todo-check').addEventListener('click', (e) => {
+  //               console.log(blogItem);
+  //               let isDone;
+  //               if (blogItem.data.isDone) {
+  //                   isDone = false;
+  //               } else {
+  //                   isDone = true;
+  //               }

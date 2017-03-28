@@ -50,9 +50,9 @@ router.delete('/post/:id',(req,res,next)=>{
 
 
 
-router.use((request, response) => {
-  response.header('Content-Type', 'application/json');
-  response.send(Posts.getItems());
+router.use((req, res) => {
+  res.header('Content-Type', 'application/json');
+  res.send(Posts.getItems());
 });
 
 module.exports = router;
