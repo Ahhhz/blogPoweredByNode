@@ -54,19 +54,18 @@
     function render(blogItems) {
         const container = document.querySelector('.js-AllPost');
         container.innerHTML = `<div class="jumbotron"><h2 class="ui header text"></h2>
-        <div class="ui tall stacked segment">
-        <p class="text post-body">
-        <div class="ui segment">
-<div class="ui active inverted dimmer">
-  <div class="ui large text loader">Loading</div>
-</div>
-<p></p>
-<p></p>
-<p></p>
-</div>
-        </p>
-        </div>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p></div>`
+      	<div class="ui tall stacked segment">
+      	<p class="text post-body">
+      	<div class="ui segment">
+      	<div class="ui active inverted dimmer">
+      	<div class="ui large text loader">Loading</div>
+      	</div>
+      	<p style ="font-family: cursive;" >A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.</p>
+      	<em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
+      	</div>
+      </div>
+      </div>
+`
 
         for (const blogItem of blogItems) {
           console.log(blogItem)

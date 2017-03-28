@@ -42,7 +42,7 @@ body{
 }
 
 .welcome{
-  text-align: center;
+  text-align:center;
 }
 
 .header-container{
@@ -56,4 +56,10 @@ body{
 
 .inner{
   color: whitesmoke;
+}
+
+.fullscreen.modal{
+  margin-bottom: 5% !important;
+  position: relative !important;
+  margin-right: 8% !important;
 }
