@@ -1,0 +1,59 @@
+body{
+  background-color: #0FB493;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.container{
+  position: static;
+  flex: 1;
+}
+
+
+.jumbotron{
+  background-color: #C9E1C1;
+  padding: 25px 50px 100px;
+  margin-left: 2%;
+}
+
+
+.nav {
+  width: 200px;
+  background-color: #152737;
+
+}
+
+.nav-inner {
+
+  padding-left: 2%;
+  position: fixed;
+  padding-top: 2%;
+}
+
+.btn{
+  float:right;
+  margin-top: 30px
+}
+
+.ui.segment{
+   margin: .1rem 0;
+}
+
+.welcome{
+  text-align: center;
+}
+
+.header-container{
+  display: flex;
+  justify-content: center;
+}
+
+.text{
+  font-family: 'Rhodium Libre', serif;
+}
+
+.inner{
+  color: whitesmoke;
+}
