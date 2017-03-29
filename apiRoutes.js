@@ -9,7 +9,7 @@ const Posts = require('./post')
 router.use(parser.json());
 
 router.get('/post',(req,res,next)=>{
-  // console.log('IN GET')
+  // Posts.getItems();
       next();
   });
 

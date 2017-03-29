@@ -13,7 +13,7 @@
             };
             request.send();
         });
-    }
+    } //GET
 
     function POST(url, data) {
         return new Promise((resolve, reject) => {
@@ -49,13 +49,13 @@
 
             request.send(JSON.stringify(data));
         });
-    }
+    } //PUT
 
     function render(blogItems) {
         const container = document.querySelector('.js-AllPost');
         container.innerHTML = `<div class="jumbotron"><h2 class="ui header text"></h2>
       	<div class="ui tall stacked segment">
-      	<p class="text post-body">
+      	<p class="text post-body"></p>
       	<div class="ui segment">
       	<div class="ui active inverted dimmer">
       	<div class="ui large text loader">Loading</div>
@@ -64,8 +64,7 @@
       	<em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
       	</div>
       </div>
-      </div>
-`
+      </div>`
 
         for (const blogItem of blogItems) {
           console.log(blogItem)
