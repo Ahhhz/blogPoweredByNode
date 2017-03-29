@@ -51,12 +51,37 @@
         });
     } //PUT
 
+
+    function DELETE(url, data) {
+          return new Promise((resolve, reject) => {
+              const request = new XMLHttpRequest();
+              request.open('DELETE', url);
+              request.setRequestHeader('Content-Type', 'application/json');
+
+              request.onload = () => {
+                  const data = JSON.parse(request.responseText);
+                  resolve(data)
+              };
+              request.onerror = (err) => {
+                  reject(err)
+              };
+
+              request.send(JSON.stringify(data));
+          });
+      }
+
+
+
+
+
+
+
     function render(blogItems) {
         const container = document.querySelector('.js-AllPost');
         container.innerHTML = ''
 
         for (const blogItem of blogItems) {
-            console.log(blogItem)
+            // console.log(blogItem)
             const div = document.createElement('div')
             div.innerHTML = `<h2 class="ui header text">${blogItem.data.title}</h2>
           <div class="ui tall stacked segment">
@@ -65,13 +90,49 @@
           </p></h4>
           </div>`;
 
+            if (blogItem.data.isDone) {
+                div.innerHTML += `<span class="glyphicon glyphicon-check todolist-icon js-blog-select"></span>`
+            } else {
+                div.innerHTML += `<span class="glyphicon glyphicon-unchecked todolist-icon js-blog-select"></span>`
+            }
+
+
             div.classList.add('jumbotron')
 
             container.appendChild(div)
-        }
 
-        if (blogItems.length === 0) {
-            container.innerHTML = `
+
+            div.querySelector('.js-blog-select').addEventListener('click', (e) => {
+                // console.log(blogItem);
+                let isDone;
+                if (blogItem.data.isDone) {
+                    isDone = false;
+                } else {
+                    isDone = true;
+                }
+
+                PUT('/api/post/' + blogItem.id,{isDone})
+                    .then((data) => {
+                        render(data);
+                    })
+                    .catch((e) => {
+                        alert(e)
+                    })
+            });
+
+            const discard = document.querySelector('.js-delete')
+            const {id} = blogItem;
+
+            discard.addEventListener('click', (e) => {
+
+                    DELETE('/api/post/' + blogItem.id).then((data) => {
+                    console.log('delete complete')
+                    render(data)
+                  });
+            });
+
+            if (blogItems.length === 0) {
+                container.innerHTML = `
             <div class="jumbotron"><h2 class="ui header text"></h2>
             <div class="ui tall stacked segment">
             <p class="text post-body"></p>
@@ -84,10 +145,11 @@
             </div>
             </div>
             </div>`;
-        }
-    } // render
 
+            }
+        } // render
 
+    }
 
     const createBtn = document.querySelector('.js-create')
     createBtn.addEventListener('click', (e) => {
@@ -124,21 +186,6 @@
     discard.addEventListener('click', (e) => {
         console.log(e)
     })
-
-
-    //               PUT('/api/post/' + blogItem.id, {
-    //                       isDone
-    //                   })
-    //                   .then((data) => {
-    //                       render(data);
-    //                   })
-    //                   .catch((e) => {
-    //                       alert(e)
-    //                   })
-    //           })
-    //
-    //       }
-
 
     GET('api/post')
         .then((blogItems) => {
