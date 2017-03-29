@@ -21,10 +21,10 @@
   }
 
 
-  Posts.updateItem = (id, title, blog) => {
-  	db.get('post')
-  		  .find({ id, title, blog })
-  		  .assign({title: newTitle, blog: newBlog})
+  Posts.updateItem = (id, key, propertyToUpdate) => {
+  const post =	db.get('post')
+  		  .find({ id })
+  		  post.set(key, propertyToUpdate)
   		  .write()
   }
 

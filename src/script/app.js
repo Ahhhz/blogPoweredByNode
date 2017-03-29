@@ -53,58 +53,77 @@
 
     function render(blogItems) {
         const container = document.querySelector('.js-AllPost');
-        container.innerHTML = `<div class="jumbotron"><h2 class="ui header text"></h2>
-      	<div class="ui tall stacked segment">
-      	<p class="text post-body"></p>
-      	<div class="ui segment">
-      	<div class="ui active inverted dimmer">
-      	<div class="ui large text loader">Loading</div>
-      	</div>
-      	<p style ="font-family: cursive;" >A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.</p>
-      	<em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
-      	</div>
-      </div>
-      </div>`
+        container.innerHTML = ''
 
         for (const blogItem of blogItems) {
-          console.log(blogItem)
-          const div = document.createElement('div')
-          div.innerHTML = `<h2 class="ui header text">${blogItem.data.title}</h2>
+            console.log(blogItem)
+            const div = document.createElement('div')
+            div.innerHTML = `<h2 class="ui header text">${blogItem.data.title}</h2>
           <div class="ui tall stacked segment">
-          <p class="text post-body">
+          <h4><p style = "overflow:scroll; width:915px; height:300px;" class="text post-body">
             ${blogItem.data.blog}
-          </p>
-          </div>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p>
-          `;
-          div.classList.add('jumbotron')
+          </p></h4>
+          </div>`;
 
-          container.appendChild(div)
+            div.classList.add('jumbotron')
+
+            container.appendChild(div)
+        }
+
+        if (blogItems.length === 0) {
+            container.innerHTML = `
+            <div class="jumbotron"><h2 class="ui header text"></h2>
+            <div class="ui tall stacked segment">
+            <p class="text post-body"></p>
+            <div class="ui segment">
+            <div class="ui active inverted dimmer">
+            <div class="ui large text loader">Loading</div>
+            </div>
+            <p style ="font-family:cursive";>A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.</p>
+            <em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
+            </div>
+            </div>
+            </div>`;
         }
     } // render
 
 
 
     const createBtn = document.querySelector('.js-create')
-    createBtn.addEventListener('click',(e) => {
-      console.log(e)
-      $('.ui.fullscreen.modal')
-      .modal('toggle')
-      ;
+    createBtn.addEventListener('click', (e) => {
+        $('.ui.fullscreen.modal')
+            .modal('toggle')
+    });
+
+    const submit = document.querySelector('.js-submit')
+
+    submit.addEventListener('click', (e) => {
+
+        const input = document.querySelector('.js-title');
+        const body = document.querySelector('.js-textArea')
+        input.setAttribute('disabled', 'disabled');
+        body.setAttribute('disabled', 'disabled');
+
+        const time = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+
+        POST('/api/post', {
+            title: input.value,
+            blog: body.value,
+            when: time,
+        }).then((data) => {
+            input.removeAttribute('disabled');
+            body.removeAttribute('disabled');
+            input.value = '';
+            body.value = '';
+            window.location.href = '/';
+        })
+
+    });
+
+    const discard = document.querySelector('.js-delete')
+    discard.addEventListener('click', (e) => {
+        console.log(e)
     })
-    // createBtn.addEventListener('click', (e) => {
-    //     POST('/api/post', {
-    //         post: input.value,
-    //         when: new Date().getTime() + 9 * 60 * 60 * 1000
-    //     }).then((data) => {
-    //         input.removeAttribute('disabled');
-    //         input.value = '';
-            // render(data);
-    //     });
-    // })
-
-
-
 
 
     //               PUT('/api/post/' + blogItem.id, {

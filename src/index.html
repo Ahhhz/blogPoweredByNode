@@ -11,26 +11,28 @@
 </head>
 
 <!--BEGIN FLEXING!-->
-<body class = "flex-container">
 
+<body class="flex-container">
+
+	<!--HEADER!-->
 	<div class="ui basic segment">
 		<div class="welcome">
 			<h1 class="text">Title</h1>
 		</div>
 	</div>
+	<!--END HEADER-->
 
-
-		<!--FORM!-->
-		<div class="ui fullscreen modal">
+	<!--FORM!-->
+	<div class="ui fullscreen modal">
 		<div class="header text">Say What You Will</div>
 		<div class="content">
 			<div class="ui form">
 				<input class="blogtitle js-title" placeholder="Blog Title" />
-				<textarea class="blogbody js-textArea" placeholder="Blog Body"></textarea>
+				<textarea class="blogbody js-textArea" placeholder="What's On Your Mind"></textarea>
 			</div>
 		</div>
 		<div class="actions">
-			<div class="ui approve orange button">Submit</div>
+			<div class="ui approve orange button js-submit">Submit</div>
 			<div class="ui green button">Delete</div>
 			<div class="ui cancel blue button">Cancel</div>
 		</div>
@@ -40,63 +42,33 @@
 
 
 
-			<!--BEGIN FIXED NAV!-->
+	<!--BEGIN FIXED NAV!-->
 
-			<div class="nav-inner">
-				<h1 class="text inner">Tell me</h1>
-				<div class="ui large vertical buttons">
-					<button class="ui inverted teal basic button js-create">Create</button>
-					<button class="ui inverted orange basic button">Messages</button>
-					<button class="ui inverted blue basic button">Friends</button>
-				</div>
-			</div>
-
-		<!--END NAV!-->
-
-			<!--BLOG CONTENT!-->
-			<div class="container js-AllPost">
-			<div class="jumbotron">
-				<h2 class="ui header text"></h2>
-				<div class="ui tall stacked segment">
-					<p class="text post-body">
-					</p>
-				</div>
-				<p><a class="btn btn-primary btn-lg" href="#" role="button">Read more</a></p>
-			</div>
+	<div class="nav-inner">
+		<h1 class="text inner">Tell me</h1>
+		<div class="ui large vertical buttons">
+			<button class="ui inverted teal basic button js-create">Create</button>
+			<button class="ui inverted orange basic button js-delete">Delete</button>
+			<button class="ui inverted blue basic button">Friends</button>
 		</div>
-		<!--END CONTENT!-->
+	</div>
 
+	<!--END NAV!-->
 
-		<div class="container js-AllPost">
-			<div class="jumbotron"><h2 class="ui header text"></h2>
+	<!--BLOG CONTENT!-->
+	<div class="container js-AllPost">
+		<div class="jumbotron">
+			<h2 class="ui header text"></h2>
 			<div class="ui tall stacked segment">
-			<p class="text post-body"></p>
-			<div class="ui segment">
-			<div class="ui active inverted dimmer">
-			<div class="ui large text loader">Loading</div>
+				<p class="text post-body">
+				</p>
 			</div>
-			<p style ="font-family: cursive;" >A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.</p>
-			<em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
-			</div>
-		</div>
-		</div>
-		</div>
+			<div>
 
 
-		<div class="container js-AllPost">
-			<div class="jumbotron"><h2 class="ui header text"></h2>
-			<div class="ui tall stacked segment">
-			<p class="text post-body"></p>
-			<div class="ui segment">
-			<div class="ui active inverted dimmer">
-			<div class="ui large text loader">Loading</div>
-			</div>
-			<p style ="font-family: cursive;" >A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.</p>
-			<em><br style = "text-align:right;"> -Douglas Adams’ The Hitchhiker’s Guide to The Galaxy</br></em>
-			</div>
-		</div>
-		</div>
-		</div>
+	<!--END CONTENT!-->
+
+
 
 
 

@@ -8,14 +8,15 @@ const Posts = require('./post')
 
 router.use(parser.json());
 
-router.get('/post',(req,res,next)=>{
-  // Posts.getItems();
+
+router.get('/post',(request , response ,next) => {
       next();
-  });
+ });
 
 
 
-router.post('/post',(req,res,next)=>{
+router.post('/post',(request , response ,next) => {
+
   const requestBody = request.body;
 
   Posts.createItem(requestBody)
@@ -23,21 +24,17 @@ router.post('/post',(req,res,next)=>{
     next();
 });
 
-router.put('/post/:id',(req,res,next)=>{
-  const title = blogItem.data.title;
-	const blog = blogItem.data.blog;
 
+router.put('/post/:id',(request , response ,next) => {
   const id = parseInt(request.params.id, 10);
-	// const dataPayload = request.body;
-
-
-  Posts.updateItem(id, title, blog);
-
+	const dataPayload = request.body;
+  Object.keys(dataPayload).forEach((key) => {
+  		Posts.updateItem(id, 'data.' + key, dataPayload[key]);
+  	})
   next();
-
 });
 
-router.delete('/post/:id',(req,res,next)=>{
+router.delete('/post/:id',(request , response ,next) => {
 
     const id = parseInt(request.params.id, 10);
 
@@ -50,9 +47,9 @@ router.delete('/post/:id',(req,res,next)=>{
 
 
 
-router.use((req, res) => {
-  res.header('Content-Type', 'application/json');
-  res.send(Posts.getItems());
+router.use((request , response) => {
+  response.header('Content-Type', 'application/json');
+  response.send(Posts.getItems());
 });
 
 module.exports = router;
