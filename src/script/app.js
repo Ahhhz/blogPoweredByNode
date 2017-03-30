@@ -102,6 +102,7 @@
             container.appendChild(div)
 
 
+
             div.querySelector('.js-blog-select').addEventListener('click', (e) => {
                 // console.log(blogItem);
                 let isDone;
@@ -111,21 +112,30 @@
                     isDone = true;
                 }
 
+
+
+              // const edit = document.querySelector('.js-edit')
+
+              // edit.addEventListener('click',(e)=>{
+
                 PUT('/api/post/' + blogItem.id,{isDone})
-                    .then((data) => {
-                        render(data);
-                    })
-                    .catch((e) => {
-                        alert(e)
-                    })
+                .then((data) => {
+                  render(data);
+                })
+                .catch((e) => {
+                  alert(e)
+                })
+              // })
             });
 
             const discard = document.querySelector('.js-delete')
             const {id} = blogItem;
 
             discard.addEventListener('click', (e) => {
-
-                    DELETE('/api/post/' + blogItem.id).then((data) => {
+                      //     $('.jumbotron')
+                      // .transition('fly left')
+                      // ;
+                    DELETE('/api/post/' + id).then((data) => {
                     console.log('delete complete')
                     render(data)
                   });
@@ -183,10 +193,10 @@
 
     });
 
-    const discard = document.querySelector('.js-delete')
-    discard.addEventListener('click', (e) => {
-        console.log(e)
-    })
+    // const discard = document.querySelector('.js-delete')
+    // discard.addEventListener('click', (e) => {
+    //     console.log(e)
+    // })
 
     GET('api/post')
         .then((blogItems) => {
