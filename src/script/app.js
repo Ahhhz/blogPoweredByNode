@@ -79,8 +79,8 @@
     function render(blogItems) {
         const container = document.querySelector('.js-AllPost');
         container.innerHTML = ''
-
-        for (const blogItem of blogItems) {
+        const blogs = blogItems.reverse();
+        for (const blogItem of blogs) {
             // console.log(blogItem)
             const div = document.createElement('div')
             div.innerHTML = `<h2 class="ui header text">${blogItem.data.title}</h2>
@@ -178,6 +178,7 @@
             input.value = '';
             body.value = '';
             window.location.href = '/';
+
         })
 
     });
